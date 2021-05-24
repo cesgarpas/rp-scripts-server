@@ -1,7 +1,7 @@
 # Raspberry PI Scripts Server Runner
 Simple generic server for Raspberry PI to run any script located inside a folder from the browser.
 
-![Scripts server](https://github.com/cesgarpas/rp-scripts-server/blob/main/working-server.png?raw=true)
+![Scripts server](https://github.com/cesgarpas/rp-scripts-server/blob/main/server-working.png?raw=true)
 
 ## Setting up and configuring startup
 0. Clone the repository where you want it to be (I will do it in /home/pi):
@@ -57,6 +57,9 @@ systemctl enable scripts-server
 
 ## Add and run scripts
 Add any .sh file to the repo folder (with execution permissions) and restart the service. You will see the scripts list in the view and by clicking on them they will be executed and the output showed.
+
+## Run command
+You can also use the input to run any command and it will be displayed in the textarea with the result.
 
 ## Debug
  - To view the logs of the service run:
