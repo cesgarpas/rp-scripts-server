@@ -3,7 +3,7 @@ Simple generic server for running scripts in the Raspberry pi which are located 
 
 ![Scripts server](https://github.com/cesgarpas/rp-scripts-server/blob/main/working-server.png?raw=true)
 
-## Setting up startup run
+## Setting up and configuring startup
 0. Clone the repository where you want it to be (I will do it in /home/pi):
 ```
 git clone https://github.com/cesgarpas/rp-scripts-server
@@ -56,7 +56,7 @@ systemctl enable scripts-server
 ```
 
 ## Add and run scripts
-Add any .sh file to the repo folder and restart the service. You will see the scripts list in the view and by clicking on them they will be executed and you will be able to see the output.
+Add any .sh file to the repo folder (with execution permissions) and restart the service. You will see the scripts list in the view and by clicking on them they will be executed and the output showed.
 
 ## Debug
  - To view the logs of the service run:
