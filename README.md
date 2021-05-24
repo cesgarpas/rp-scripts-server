@@ -33,12 +33,13 @@ WantedBy=multi-user.target
 ```
 nano /home/pi/rp-scripts-server/list-drives.sh
 ```
-Paste and save the following script:
+
+Paste and save the following command:
 ```
 sudo lsblk -o UUID,NAME,FSTYPE,SiZE,MOUNTPOINT,LABEL,MODEL
 ```
 
-Give it execution permissions:
+Give the script execution permissions:
 ```
 chmod +x /home/pi/rp-scripts-server/list-drives.sh
 ```
@@ -47,7 +48,7 @@ chmod +x /home/pi/rp-scripts-server/list-drives.sh
 ```
 systemctl start scripts-server
 ```
-It should be accessible at `http://[your.rp.ip]:5000` and the script (list-drives) should appear and work.
+It should be accessible at `http://[your.raspberrypi.ip]:5000` and the script (list-drives) should appear and work listing your available drives with extra information.
 
 5. Enable the service for it to run at startup:
 ```
