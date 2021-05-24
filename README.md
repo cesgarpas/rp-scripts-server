@@ -1,5 +1,5 @@
 # Raspberry PI Scripts Server Runner
-Simple generic server for running scripts in the Raspberry pi which are located inside a folder.
+Simple generic server for Raspberry PI to run any script located inside a folder from the browser.
 
 ![Scripts server](https://github.com/cesgarpas/rp-scripts-server/blob/main/working-server.png?raw=true)
 
