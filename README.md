@@ -1,6 +1,8 @@
 # Raspberry PI Scripts Server Runner
 Simple generic server for running scripts in the Raspberry pi which are located inside a folder.
 
+![Scripts server](https://github.com/cesgarpas/rp-scripts-server/blob/main/working-server.png?raw=true)
+
 ## Setting up startup run
 0. Clone the repository where you want it to be (I will do it in /home/pi):
 ```
