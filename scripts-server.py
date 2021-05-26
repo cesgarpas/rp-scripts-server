@@ -8,29 +8,34 @@ app = Flask(__name__)
 ############ Load scripts filenames ############
 scripts_folder = os.popen("pwd").read().replace("\n", "")
 
-files = [f for f in os.listdir(scripts_folder) if os.path.isfile(os.path.join(scripts_folder, f))]
-sh_files = [f for f in files if f.endswith('.sh')]
-sh_files.sort()
-
 ############ HTML Components ############
+
 # Homepage
-
-## H1
-home = '<h1>Scripts runner</h1>'
-
-## Links
-home += '<p>Links:</p>'
-home += '<ul>'
-for filename in sh_files:
-  home += '<li><a href="/' + filename.split('.')[0] + '">' + filename + '</a></li>'
-home += '</ul>'
-
-## Input
-home += '<p>Run command:</p>'
-home += '<form action="/run-generic-script">'
-home += '<input type="text" name="script" id="script" value="" style="width:400px">'
-home += '<input type="submit" value="Run Script">'
-home += '</form>'
+def home():
+  ## Obtain sh filenames
+  files = [f for f in os.listdir(scripts_folder) if os.path.isfile(os.path.join(scripts_folder, f))]
+  sh_files = [f for f in files if f.endswith('.sh')]
+  sh_files.sort()
+  
+  
+  ## H1
+  home = '<h1>Scripts runner</h1>'
+  
+  ## Links
+  home += '<p>Links:</p>'
+  home += '<ul>'
+  for filename in sh_files:
+    home += '<li><a href="/run-script?script=' + filename + '">' + filename + '</a></li>'
+  home += '</ul>'
+  
+  ## Input
+  home += '<p>Run command:</p>'
+  home += '<form action="/run-generic-script">'
+  home += '<input type="text" name="script" id="script" value="" placeholder="Enter command" style="width:400px">'
+  home += '<input type="submit" value="Run Script">'
+  home += '</form>'
+  
+  return home
 
 # Textarea
 ## Component
@@ -46,24 +51,23 @@ def result_component(result):
 # Home
 @app.route("/")
 def homepage():
-  return home
+  return home()
+  
+# Script runner
+@app.route("/run-script")
+def run_script():
+  script = request.args.get('script', type = str)
+  run_result = os.popen("./" + script).read()
+  return home() + result_component(run_result)
   
 # Generic Script Runner
 @app.route("/run-generic-script")
 def run_generic_script():
   script = request.args.get('script', type = str)
   if script == "":
-    script = "echo 'No script entered'"
-  return home + result_component(os.popen(script).read())
-  
-# Generic router for scripts
-for filename in sh_files:
-  script_name = filename.split('.')[0]
-  function = '@app.route("/' + script_name + '")\n'
-  function += 'def ' + script_name.replace('-','_') + '():\n'
-  function += '   return home + result_component(os.popen("./' + script_name + '.sh").read())'
-  exec(function)
-
+    script = "echo 'No commands entered'"
+  run_result = os.popen(script).read()
+  return home() + result_component(run_result)
 
 ############ Run APP ############
 if __name__ == "__main__":
